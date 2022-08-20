@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "extension",
+      "kind" : "remoteSourceControl",
+      "location" : "https://gitee.com/cchsora/Extension",
+      "state" : {
+        "branch" : "master",
+        "revision" : "5209718067f5fb652ffcc3bfe56720353d57dd8e"
+      }
+    },
+    {
+      "identity" : "linkedlist",
+      "kind" : "remoteSourceControl",
+      "location" : "https://gitee.com/cchsora/LinkedList",
+      "state" : {
+        "branch" : "master",
+        "revision" : "2b8b8cd1f95807f6a48469ac7e8022aab98f2bbb"
+      }
+    },
+    {
+      "identity" : "print",
+      "kind" : "remoteSourceControl",
+      "location" : "https://gitee.com/cchsora/Print",
+      "state" : {
+        "branch" : "master",
+        "revision" : "e63f985b0e87a2f0711146599b5f4028f3b64261"
+      }
+    }
+  ],
+  "version" : 2
+}
