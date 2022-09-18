@@ -391,29 +391,31 @@ open class VideoFileDecode: VideoDecodeProtocol {
             return
         }
         
+        /// 当前时间
         let currentTimeInterval = Date().timeIntervalSince1970
+        /// 时间间隔
+        let displayDuration = currentTimeInterval - lastDisplayTimeInterval
         
-        if lastFrameTimeInterval > 0 {
-            
-            /// 帧间隔
-            var timeinTerval = duration.seconds - lastFrameTimeInterval
-            
-            /// 距离上次显示时长
-            let displayDuration = currentTimeInterval - lastDisplayTimeInterval
-            
-            /// 减去读取解码消耗的时间
-            timeinTerval -= displayDuration
-            
-            /// 延时显示
-            if timeinTerval > 0 {
-                
-                Thread.sleep(forTimeInterval: timeinTerval)
-            }
-        }
-        
-        lastFrameTimeInterval = duration.seconds
         lastDisplayTimeInterval = currentTimeInterval
         
+        /// 帧时间
+        let currentDuration = duration.seconds
+        /// 帧时间间隔
+        let timeInterval = currentDuration - lastFrameTimeInterval
+        lastFrameTimeInterval = currentDuration
+        
+        if lastFrameTimeInterval != timeInterval {
+            
+            /// 睡眠时间
+            let sleepTime = timeInterval - displayDuration
+            
+            /// 延时显示
+            if sleepTime > 0 {
+                
+                lastDisplayTimeInterval = currentTimeInterval + sleepTime
+                Thread.sleep(forTimeInterval: sleepTime)
+            }
+        }
         
         delegate?.videoFileDecode(self, imageBuffer: imageBuffer, presentationTimeStamp: presentationTimeStamp, duration: duration)
     }
